@@ -1,14 +1,109 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[french]{babel}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{graphicx}
-\usepackage{pgfplots}
+\usepackage[french]{babel} % permet la mise en page à la française
+\usepackage{amsmath} % insertion de certains symboles mathématiques
+\usepackage{amsfonts} % insertion de certains symboles mathématiques
+\usepackage{amssymb} % insertion de certains symboles mathématiques
+\usepackage{graphicx} % insertion d'images
+\usepackage{pgfplots} % pour faire des beaux graphiques
 \usepackage{standalone}
 
 \begin{document}
-	
+	La taille des polices se fait par les commandes suivantes:
+	\begin{itemize}
+		\item \begin{verbatim}
+		\tiny
+		\end{verbatim}
+		{\tiny C'est tout petit}
+		
+		\item \begin{verbatim}
+		\small
+		\end{verbatim}
+		{\small C'est petit}
+		
+		\item \begin{verbatim}
+		\normalsize
+		\end{verbatim}
+		{\normalsize C'est normal}
+		
+		\item \begin{verbatim}
+		\large
+		\end{verbatim}
+		{\large C'est plus grand}
+		
+		\item \begin{verbatim}
+		\Large
+		\end{verbatim}
+		{\Large C'est très grand}
+		
+		\item \begin{verbatim}
+		\LARGE
+		\end{verbatim}
+		{\LARGE C'est très très grand}
+		
+		\item \begin{verbatim}
+		\huge
+		\end{verbatim}
+		{\huge C'est énorme}
+		
+		\item \begin{verbatim}
+		\Huge
+		\end{verbatim}
+		{\Huge C'est vraiment énorme}
+		\newline
+	\end{itemize}
+
+
+	Les styles comme italiques, gras etc.:
+	\begin{itemize}
+		\item \begin{verbatim}
+		\textit{contenu...}
+		\end{verbatim}
+		\textit{Du texte en italique}
+		
+		\item \begin{verbatim}
+		\textbf{contenu...}
+		\end{verbatim}
+		\textbf{Du texte en gras}
+		
+		\item \begin{verbatim}
+		\underline{contenu...}
+		\end{verbatim}
+		\underline{Du texte souligné}
+		\newline
+	\end{itemize}
+
+Je veux insérer une image et la centrer dans une figure \ref{fig:big_photo}.
+
+\begin{verbatim}
+\begin{figure}
+	\centering
+	\includegraphics{photo.jpg}
+	\caption{une belle photo trop grande}
+	\label{fig:big_photo}
+\end{figure}
+\end{verbatim}
+\begin{figure}
+	\centering
+	\includegraphics{photo.jpg}
+	\caption{une belle photo trop grande}
+	\label{fig:big_photo}
+\end{figure}
+
+Pour la redimensionner, on peut utiliser les options de \textit{includegraphics}. Comme sur la figure \ref{fig:not_big_photo}.
+\begin{verbatim}
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{photo.jpg}
+	\caption{une belle photo moins grande}
+	\label{fig:not_big_photo}
+\end{figure}
+\end{verbatim}
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{photo.jpg}
+	\caption{une belle photo moins grande}
+	\label{fig:not_big_photo}
+\end{figure}
 \end{document}
