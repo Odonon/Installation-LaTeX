@@ -242,4 +242,34 @@ Les environnements de figure, de table et d'équations sont, par exemple, flotta
 \end{Verbatim}
 \end{frame}
 
+\begin{frame}[fragile]
+	Pour remplir un tableau, on délimite les colonnes par des \& et chaque ligne de code correspond à une ligne, on la termine par $\setminus\setminus$. Pour tracer une ligne horizontale on utilise la commande \textit{hline}.
+	\begin{Verbatim}
+	\begin{tabular}{|c|c|c|}
+		1 & 2 & 3\\
+		\hline
+		4 & 5 & 6\\
+		\hline
+	\end{tabular}
+	\end{Verbatim}
+	\vspace{.3cm}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		1 & 2 & 3\\
+		\hline
+		4 & 5 & 6\\
+		\hline
+	\end{tabular}
+\end{frame}
+
+\section{Tracer des graphes}
+
+\begin{frame}[fragile]
+	Le package \textit{standalone} permet de séparer votre code en plusieurs scripts et les compiler indépendemment. Je vous conseille de l'utiliser régulièrement pour éviter d'avoir les codes de vos graphes dans votre script principal. Je vous renvoie à l'exemple.
+	
+	\begin{definition}
+		\textcolor{red}{Tikz} (et par extension \textcolor{red}{PGFplot}) permet de dessiner dans LaTeX, tracer des formes etc. PGFplot est un enfant de ce plus gros package qui est spécifique au tracé de graphes (2D ou 3D).
+	\end{definition}
+\end{frame}
+
 \end{document}
