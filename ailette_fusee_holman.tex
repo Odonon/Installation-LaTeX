@@ -1,0 +1,39 @@
+%% Cet exemple trace des courbes de référence de Holman pour l'efficacité d'une ailette cylindrique.
+%% Pour compiler, il nécessite le document texte ailette_fusee_holman.txt
+%% Le but de cet exemple est de montrer l'utilisation simple de l'environnement axis et des nodes dans les tikzpicture
+\documentclass{standalone}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+	\pgfplotsset{compat=newest}
+	\usetikzlibrary{quotes,angles,patterns,plotmarks,external}
+\usepackage{xfrac}
+	\newcommand*\rfrac[2]{{}^{#1}\!/_{#2}}%running fraction with slash - requires math mode. Chris H (TeXchange)
+\begin{document}
+\begin{tikzpicture}
+\tikzset{%
+	every pin/.style={fill=white,rectangle},
+	small dot/.style={fill=black,circle,scale=0.3}
+}
+\begin{axis}[%
+	xlabel={${L_c}^{\rfrac{3}{2}}\sqrt{\dfrac{h_{conv}}{k\,A_m}}$},
+	ylabel={Efficacité de l'ailette $\eta_{ail}$},
+	ymax=1,
+	ymin=0,
+	xmax=3,
+	xmin=0,
+	xmajorgrids,
+	ymajorgrids
+	]
+\addplot+[no marks,line width=1pt,black] table[x=x,y=Curve1] {ailette_fusee_holman.txt};
+\addplot+[no marks,line width=1pt,black] table[x=x,y=Curve2] {ailette_fusee_holman.txt};
+\addplot+[no marks,line width=1pt,black] table[x=x,y=Curve3] {ailette_fusee_holman.txt};
+\addplot+[no marks,line width=1pt,black] table[x=x,y=Curve4] {ailette_fusee_holman.txt};
+\addplot+[no marks,line width=1pt,black] table[x=x,y=Curve5] {ailette_fusee_holman.txt};
+\node[pin=45:{$\dfrac{r_{2c}}{r_1}=1$}] at (axis description cs:0.22,0.75) {};
+\node[pin=45:{$2$}] at (axis description cs:0.3,0.55) {};
+\node[pin=45:{$3$}] at (axis description cs:0.35,0.43) {};
+\node[pin=225:{$4$}] at (axis description cs:0.5,0.32) {};
+\node[pin=260:{$5$}] at (axis description cs:0.6,0.23) {};
+\end{axis}
+\end{tikzpicture}
+\end{document}
