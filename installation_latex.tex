@@ -1,0 +1,208 @@
+\documentclass[11pt,a4paper]{article} % Choix de la classe, ici une basique de LaTeX
+\usepackage[utf8]{inputenc} % Permet d'écrire avec des accents
+\usepackage[T1]{fontenc} % Permet de montrer les accents dans le résultat final
+\usepackage{lmodern} % Choix de la police de caractères
+\renewcommand{\familydefault}{\sfdefault} % Permet d'avoir un police sans serif par défaut
+\usepackage[left=2cm,right=2cm,bottom=2.5cm,top=2.5cm]{geometry} % Change la taille des marges
+\usepackage[french]{babel} % Permet de mettre le texte en page comme on le fait en français
+
+% Packages de maths
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+% Pour faire des textes encapsulés dans des boîtes
+\usepackage{mdframed}
+\global\mdfdefinestyle{exampledefault}{%
+linecolor=black,linewidth=1pt,%
+leftmargin=1cm,rightmargin=1cm
+}
+
+% Pour faire des smileys (de base ici ^^)
+\usepackage{wasysym}
+
+% Pour avoir du texte en couleur
+\usepackage{color}
+
+% Pour pouvoir insérer des urls cliquables
+\usepackage{url}
+%% En-têtes et pieds de pages
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+	\fancyhead{}
+	\fancyhead[L]{\slshape Comment installer \LaTeX}
+	\rhead{Rédigé avec \LaTeX}
+	\fancyfoot{}
+	\rfoot{\thepage}
+	\lfoot{Par Jean-Baptiste Boni}
+	\renewcommand{\footrulewidth}{0.4pt}
+\usepackage{ulem} % Permet d'avoir une commande pour souligner du texte
+
+\usepackage{fancyvrb}
+\usepackage{fvextra}
+
+\begin{document}
+
+% Titre centré, en gras et en gros
+\begin{center}
+{\huge \textbf{Comment installer \LaTeX\ sur Windows}}
+\end{center}
+
+\uline{Objectif:} Le but de ce tutoriel est l'installation propre et effective d'une librairie \LaTeX\ ainsi qu'un éditeur de code open-source appelé TexStudio qui vous simplifiera bien la vie ! Sachez cependant qu'il en existe d'autres.
+
+\section{Un petit point sur \LaTeX}
+Tout d'abord voici la présentation de \LaTeX\ faite sur Wikipédia :
+
+\begin{mdframed}[style=exampledefault]
+LaTeX est un langage et un système de composition de documents créé par Leslie Lamport en 1983. Il s'agit d'une collection de macro-commandes destinées à faciliter l'utilisation du « processeur de texte » TeX de Donald Knuth. Depuis 1993, il est maintenu par le LaTeX3 Project team. La première version largement utilisée, appelée LaTeX2.09, est sortie en 1984. Une révision majeure, appelée LaTeX2$\epsilon$, est sortie en 1991.
+
+Le nom est l'abréviation de Lamport TeX. On écrit parfois \LaTeX\ au lieu de LaTeX, le logiciel permettant les mises en forme correspondant au logo.
+
+Du fait de sa relative simplicité, il est devenu le langage privilégié pour les documents scientifiques employant TeX. Il est particulièrement utilisé dans les domaines techniques et scientifiques pour la production de documents de taille moyenne ou importante (thèse ou livre, par exemple). Néanmoins, il peut être aussi employé pour générer des documents de types variés (par exemple, des lettres, ou des transparents).
+\end{mdframed}
+
+Il faut donc bien comprendre la différence fondamentale entre \LaTeX\ et les logiciels de traitements de textes (MS-Word, OpenOffice ou LibreOffice pour ne citer que les plus connus): \LaTeX\ n'est pas un WYSIWYG \textit{``What You See Is What You Get``}, c'est un langage de programmation qui est interprété par un interpreteur (ici Pdflatex, XeLatex ou encore LuaLatex) et ressemble donc beaucoup plus à de la programmation dans la démarche. L'avantage principal est donc que ce n'est à vous de traiter la mise en page ou encore la typographie ! Je garde le reste de l'explication pour la présentation \smiley{}
+
+\textcolor{red}{Ce qui suit nécessite d'avoir les droits d'administrateur sur votre machine. Si ce n'est pas le cas je vous présenterai une alternative en ligne gratuite. Attention ! Ce qui suit doit être suivi dans l'ordre. Si vous installez \textit{TexStudio} avant \textit{MikTeX}, vous devrez recommencer de zéro...}
+
+\section{Installation de \textit{MikTex} sous Windows}
+On va ici installer une bibliothèque de packages \LaTeX\ et d'interpréteurs qui sont maintenus à jour. J'ai choisi ici d'utiliser \textit{MikTeX} mais sachez qu'il existe aussi \textit{TeXlive} qui est plus complet et comprend plus d'outils de base (cependant, son installation est beaucoup plus longue et plus gourmande en stockage). \textit{MikTeX} a l'avantage d'être plus léger et comprend bien plus qu'il n'en faut pour écrire des documents scientifiques !
+
+\begin{enumerate}
+	\item Tout d'abord rendez-vous sur la page \textit{MikTeX} : \url{https://miktex.org/download} pour télécharger l'installeur sous Windows.
+	\item Cliquer sur le fichier exécutable que vous venez de télécharger. Vous lancez alors l'installeur de MikTeX :
+	\begin{itemize}
+		\item Accepter les conditions d'utilisation.
+		\item Choisir si l'installation doit être faite seulement pour l'utilisateur de la session ou pour tous les utilisateurs. Je vous conseille de l'installer pour tous les utilisateurs, on ne sait jamais avec Windows...
+		\item Choisir l'emplacement pour l'installation. Je vous conseille de le laisser par défaut pour une première installation.
+		\item Sur la page de \textit{Settings}, choisir le papier préféré (cela le mettra par défaut dans toutes les classes que vous utiliserez par la suite).
+		
+		La deuxième option concerne l'installation des packages. En effet tous les packages existant ne sont pas installés de base (sachant que chacun peut en créer un, je vous laisse imaginer le nombre existant !), ainsi, quand vous appelez un package que vous n'avez jamais utilisé jusqu'à maintenant, \textit{MikTeX} s'occupera de chercher et installer seul le package en question. Ici, on vous laisse le choix entre vous demander à chaque fois si vous souhaitez installer le paquet ou bien de le faire systématiquement \textit{``on the fly``} (sur le tas, sans vous demander en gros). Je vous conseille de le faire \textit{``on the fly``}.
+	\end{itemize}
+		\item \textit{MikTeX} vous fait, pour finir, un résumé des options que vous avez choisi.
+\end{enumerate}
+
+\section{Installation de \textit{TexStudio} sous Windows}
+On va maintenant installer l'éditeur de code \textit{TexStudio}. Il faut savoir qu'on pourrait très bien utiliser n'importe quel éditeur de texte (notepad++, bloc notes...) pour écrire un fichier \textit{TeX}. Seulement, vu le nombre d'environnements et autres fonctions que vous appellerez dans la suite, un éditeur qui reconnaît ce que vous écrivez, vous propose automatiquement des fonctions, construit une structure externe pour s'y retrouver et colore le code pour s'y retrouver... est indispensable ! Je vous propose un éditeur open-source qui est bien maintenu et très simple d'utilisation: \textit{TexStudio}. C'est un logiciel très sommaire mais qui est bien pour démarrer. Si vous en ressentez le besoin par la suite, il existe d'autres éditeurs prisés dans la recherche comme \textit{TeXnicCenter}.
+
+\begin{enumerate}
+	\item Je vous invite à vous rendre sur le site de TexStudio: \url{https://www.texstudio.org/} à télécharger le paquet \textit{Windows installer}.
+	\item Cliquer sur le fichier \textit{.exe} pour lancer l'installeur de TexStudio.
+	\item Les options sont déjà choisies par défaut. Vous pouvez lancer l'installation sans rien changer, c'est du tout cuit \smiley{}
+\end{enumerate}
+
+Et voilà vous avez une installation fonctionnelle de \LaTeX\ qui vous permettra de rendre tous vos documents magnifiques ! Pour vous rendre compte de la structure d'un code \LaTeX\ je vous mets ici le code que je viens de taper (en environ 1h de temps en comptant la vérification de ce que je vous racontais).
+
+Les flèches sont des renvois à la ligne automatiques pour la lisibilité du code lorsqu'on s'amuse à faire de l'inception de LaTeX dans du LaTeX...
+
+\section{L'alternative en ligne: \textit{OverLeaf}}
+Une alternative à cette installation est Overleaf qui est un site internet permettant d'écrire du \LaTeX\ sans avoir une installation de Tex sur sa machine. Ce site est disponible sur \url{www.overleaf.com}. Vous trouverez aussi sur ce site un bon outil pour pouvoir rédiger des documents collaboratifs en donnant accès à votre document à d'autres utilisateurs. Ce site possède aussi toute une partie d'apprentissage de \LaTeX\ qui donne de bons exemples.
+\newline
+
+Cependant... je ne vous conseillerai peut-être pas d'y rédiger des documents trop sensibles. On est sur internet, je vous laisse réfléchir à tout ça !
+
+\clearpage
+
+\begin{Verbatim}[breaklines=true]
+
+\documentclass[11pt,a4paper]{article} % Choix de la classe, ici une basique de LaTeX
+\usepackage[utf8]{inputenc} % Permet d'écrire avec des accents
+\usepackage[T1]{fontenc} % Permet de montrer les accents dans le résultat final
+\usepackage{lmodern} % Choix de la police de caractères
+\renewcommand{\familydefault}{\sfdefault} % Permet d'avoir un police sans serif par défaut
+\usepackage[left=2cm,right=2cm,bottom=2.5cm,top=2.5cm]{geometry} % Change la taille des marges
+\usepackage[french]{babel} % Permet de mettre le texte en page comme on le fait en français
+
+% Packages de maths
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+% Pour faire des textes encapsulés dans des boîtes
+\usepackage{mdframed}
+\global\mdfdefinestyle{exampledefault}{%
+linecolor=black,linewidth=1pt,%
+leftmargin=1cm,rightmargin=1cm
+}
+
+% Pour faire des smileys (de base ici ^^)
+\usepackage{wasysym}
+
+% Pour avoir du texte en couleur
+\usepackage{color}
+
+% Pour pouvoir insérer des urls cliquables
+\usepackage{url}
+%% En-têtes et pieds de pages
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+	\fancyhead{}
+	\fancyhead[L]{\slshape Comment installer \LaTeX}
+	\rhead{Rédigé avec \LaTeX}
+	\fancyfoot{}
+	\rfoot{\thepage}
+	\lfoot{Par Jean-Baptiste Boni}
+	\renewcommand{\footrulewidth}{0.4pt}
+\usepackage{ulem} % Permet d'avoir une commande pour souligner du texte
+\begin{document}
+
+% Titre centré, en gras et en gros
+\begin{center}
+{\huge \textbf{Comment installer \LaTeX\ sur Windows}}
+\end{center}
+
+\uline{Objectif:} Le but de ce tutoriel est l'installation propre et effective d'une librairie \LaTeX\ ainsi qu'un éditeur de code open-source appelé Texmaker qui vous simplifiera bien la vie ! Sachez cependant qu'il en existe d'autres.
+
+\section{Un petit point sur \LaTeX}
+Tout d'abord voici la présentation de \LaTeX\ faite sur Wikipédia :
+
+\begin{mdframed}[style=exampledefault]
+LaTeX est un langage et un système de composition de documents créé par Leslie Lamport en 1983. Il s'agit d'une collection de macro-commandes destinées à faciliter l'utilisation du « processeur de texte » TeX de Donald Knuth. Depuis 1993, il est maintenu par le LaTeX3 Project team. La première version largement utilisée, appelée LaTeX2.09, est sortie en 1984. Une révision majeure, appelée LaTeX2$\epsilon$, est sortie en 1991.
+
+Le nom est l'abréviation de Lamport TeX. On écrit parfois \LaTeX\ au lieu de LaTeX, le logiciel permettant les mises en forme correspondant au logo.
+
+Du fait de sa relative simplicité, il est devenu le langage privilégié pour les documents scientifiques employant TeX. Il est particulièrement utilisé dans les domaines techniques et scientifiques pour la production de documents de taille moyenne ou importante (thèse ou livre, par exemple). Néanmoins, il peut être aussi employé pour générer des documents de types variés (par exemple, des lettres, ou des transparents).
+\end{mdframed}
+
+Il faut donc bien comprendre la différence fondamentale entre \LaTeX\ et les logiciels de traitements de textes (MS-Word, OpenOffice ou LibreOffice pour ne citer que les plus connus): \LaTeX\ n'est pas un WYSIWYG \textit{``What You See Is What You Get``}, c'est un langage de programmation qui est interprété par un interpreteur (ici Pdflatex, XeLatex ou encore LuaLatex) et ressemble donc beaucoup plus à de la programmation dans la démarche. L'avantage principal est donc que ce n'est à vous de traiter la mise en page ou encore la typographie ! Je garde le reste de l'explication pour la présentation \smiley{}
+
+\textcolor{red}{Ce qui suit nécessite d'avoir les droits d'administrateur sur votre machine. Si ce n'est pas le cas je vous présenterai une alternative en ligne gratuite. Attention ! Ce qui suit doit être suivi dans l'ordre. Si vous installez \textit{TeXmaker} avant \textit{MikTeX}, vous devrez recommencer de zéro...}
+
+\section{Installation de \textit{MikTex} sous Windows}
+On va ici installer une bibliothèque de packages \LaTeX\ et d'interpréteurs qui sont maintenus à jour. J'ai choisi ici d'utiliser \textit{MikTeX} mais sachez qu'il existe aussi \textit{TeXlive} qui est plus complet et comprend plus d'outils de base. \textit{MikTeX} a l'avantage d'être plus léger et comprend bien plus qu'il n'en faut pour écrire des documents scientifiques !
+
+\begin{enumerate}
+	\item Tout d'abord rendez-vous sur la page \textit{MikTeX} : \url{https://miktex.org/download} pour télécharger l'installeur sous Windows.
+	\item Cliquer sur le fichier exécutable que vous venez de télécharger. Vous lancez alors l'installeur de MikTeX :
+	\begin{itemize}
+		\item Accepter les conditions d'utilisation.
+		\item Choisir si l'installation doit être faite seulement pour l'utilisateur de la session ou pour tous les utilisateurs. Je vous conseille de l'installer pour tous les utilisateurs, on ne sait jamais avec Windows...
+		\item Choisir l'emplacement pour l'installation. Je vous conseille de le laisser par défaut pour une première installation.
+		\item Sur la page de \textit{Settings}, choisir le papier préféré (cela le mettra par défaut dans toutes les classes que vous utiliserez par la suite).
+		
+		La deuxième option concerne l'installation des packages. En effet tous les packages existant ne sont pas installés de base (sachant que chacun peut en créer un, je vous laisse imaginer le nombre existant !), ainsi, quand vous appelez un package que vous n'avez jamais utilisé jusqu'à maintenant, \textit{MikTeX} s'occupera de chercher et installer seul le package en question. Ici, on vous laisse le choix entre vous demander à chaque fois si vous souhaitez installer le paquet ou bien de le faire systématiquement \textit{``on the fly``} (sur le tas, sans vous demander en gros). Je vous conseille de le faire \textit{``on the fly``}.
+	\end{itemize}
+		\item \textit{MikTeX} vous fait, pour finir, un résumé des options que vous avez choisi.
+\end{enumerate}
+
+\section{Installation de \textit{Texmaker} sous Windows}
+On va maintenant installer l'éditeur de code \textit{Texmaker}. Il faut savoir qu'on pourrait très bien utiliser n'importe quel éditeur de texte (notepad++, bloc notes...) pour écrire un fichier \textit{TeX}. Seulement, vu le nombre d'environnements et autres fonctions que vous appellerez dans la suite, un éditeur qui reconnaît ce que vous écrivez, vous propose automatiquement des fonctions, construit une structure externe pour s'y retrouver et colore le code pour s'y retrouver... est indispensable ! Je vous propose un éditeur open-source qui est bien maintenu et très simple d'utilisation: \textit{Texmaker}. C'est un logiciel très sommaire mais qui est bien pour démarrer. Si vous en ressentez le besoin par la suite, il existe d'autres éditeurs prisés dans la recherche comme \textit{TeXnicCenter}.
+
+\begin{enumerate}
+	\item Je vous invite à vous rendre sur le site de Texmaker: \url{http://www.xm1math.net/texmaker/download_fr.html} à télécharger le paquet \textit{Desktop msi installer pour windows 7/8/10 64 bits}.
+	\item Cliquer sur le fichier pour lancer l'installeur de Texmaker.
+	\item Les options sont déjà choisies par défaut (vous pouvez les voir en cliquant sur le bouton ``Advanced`` en bas de la fenêtre). Vous pouvez lancer l'installation sans rien changer, c'est du tout cuit \smiley{}
+\end{enumerate}
+
+Et voilà vous avez une installation fonctionnelle de \LaTeX\ qui vous permettra de rendre tous vos documents magnifiques ! Pour vous rendre compte de la structure d'un code \LaTeX\ je vous mets ici le code que je viens de taper (en environ 1h de temps en comptant la vérification de ce que je vous racontais).
+
+\section{L'alternative en ligne: \textit{OverLeaf}}
+Une alternative à cette installation est Overleaf qui est un site internet permettant d'écrire du \LaTeX\ sans avoir une installation de Tex sur sa machine. Ce site est disponible sur \url{www.overleaf.com}. Vous trouverez aussi sur ce site un bon outil pour pouvoir rédiger des documents collaboratifs en donnant accès à votre document à d'autres utlisateurs. Ce site possède aussi toute une partie d'apprentissage de \LaTeX\ qui donne de bons exemples.
+\newline
+
+Cependant... je ne vous conseillerai peut-être pas d'y rédiger des documents trop sensibles. On est sur internet, je vous laisse réfléchir à tout ça !
+
+\clearpage
+\end{Verbatim}
+
+\end{document}

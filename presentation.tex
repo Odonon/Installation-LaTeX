@@ -1,0 +1,192 @@
+\documentclass{beamer}
+\usetheme{Dresden}
+%Infos pour diapo de titre
+\title{Premiers pas avec \LaTeX\ : Introduction}
+\author{Jean-Baptiste Boni}
+\date{\today}
+
+\usepackage{url}
+\usepackage{fancyvrb}
+\usepackage{fvextra}
+\usepackage{mdframed}
+	\surroundwithmdframed[linewidth=1pt,linecolor=red]{Verbatim}
+\usepackage{ulem}
+\usepackage[french]{babel}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{quotes,angles,patterns,plotmarks,decorations.pathreplacing}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\section[\LaTeX\ ?]{Qu'est ce que \LaTeX\ ?}
+\begin{frame}
+	\begin{definition}
+	WYDIWYG (What You Do Is What You Get) comprend les logiciels de traitements de textes comme MS-Word, OpenOffice ou encore LibreOffice. C'est-à-dire que la mise en page doit être faite par l'utilisateur via une interface graphique.
+	\end{definition}
+	
+	\begin{center}
+	\alert{\LaTeX\ n'en est pas un !}
+	\end{center}
+\end{frame}
+
+\begin{frame}
+	\begin{tikzpicture}
+	%% Codage en LaTeX
+		\path (0,0) node[fill=gray!20!white,draw](x1){Codage en \LaTeX\ };
+		\path (4,0) node[fill=gray!20!white,draw](y1){Mise en page};
+		\path (8,0) node[align=center,fill=gray!20!white,draw](z1){Production d'un PDF\\ ou PS};
+		\draw[->] (x1)--(y1);
+		\draw[->] (y1)--(z1);
+	%% En WYDIWYG
+		\begin{scope}[yshift=5cm]
+		\path (0,0) node[align=center,fill=gray!20!white,draw](x2){Ecriture\\ ET Mise en page };
+		\path (8,0) node[align=center,fill=gray!20!white,draw](z2){Production d'un PDF\\ ou PS};
+		\draw[->] (x2)--(z2);	
+		\end{scope}
+	%% Utilisateur
+		\begin{scope}[yshift=3cm]
+		\path (0,0) node[fill=blue!20!white,draw](x3){Utilisateur};
+		\end{scope}
+		\draw[->,blue!40!white,line width=3pt] (x3)--(x1);
+		\draw[->,blue!40!white,line width=3pt] (x3)--(x2);
+		\draw[->,blue!40!white,line width=3pt,dashed] (x3)--(y1) node[midway,above,sloped,align=center]{Intervient si besoin};
+	%% Logiciel
+		\begin{scope}[yshift=2.5cm]
+		\path (6,0) node[fill=red!20!white,draw](z3){Logiciel};
+		\end{scope}
+		\draw[->,red!40!white,line width=3pt] (z3)--(y1);
+		\draw[->,red!40!white,line width=3pt] (z3)--(z1);
+		\draw[->,red!40!white,line width=3pt] (z3)--(z2);
+		\draw[->,red!40!white,line width=3pt,dashed] (z3)--(x2) node[pos=0.5,sloped,align=center]{Intervient quand il faut\\ ou pas...};
+	\end{tikzpicture}
+\end{frame}
+
+\begin{frame}
+La mise en page n'étant pas faite par l'utilisateur, elle est faite par des \textit{``packages``} codés par la communauté. Il faut donc un compilateur pour les utiliser tous ensemble. Deux grands compilateurs sont disponibles :
+	\begin{itemize}
+		\item \alert{\textit{MikTeX}}, qui est un compilateur très simple et qui contient le minimum syndical pour compiler un code \LaTeX\ pas trop complexe.
+		\item \alert{\textit{TeXlive}}, qui lui est beaucoup plus complet et contient un grand nombre d'options.
+	\end{itemize}
+
+Par ailleurs, il est intéressant, bien que pas obligatoire, d'utiliser un éditeur de code \LaTeX\ qui vous permettra de bien structurer votre code et d'être plus efficace.
+
+\uline{Solution en ligne:} \textit{OverLeaf} (\url{https://www.overleaf.com/})
+\end{frame}
+
+\section[TeX]{Le langage TeX}
+
+\begin{frame}
+	\begin{tikzpicture}
+		\filldraw[fill=red!20!white,draw=black] (0,0) rectangle (5,2);
+		\filldraw[fill=blue!20!white,draw=black] (0,0) rectangle (5,-4);
+		\draw[decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt}] (5,0)--(5,2) node[black,pos=0.5,right,xshift=0.8cm,align=left]{Le préambule du document :\\ il contient l'appel à tous les\\ packages que vous voudrez utiliser\\ (ou pas) et les options dont ils ont\\ besoin pour fonctionner};
+		\draw[decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt}] (5,-4)--(5,0) node[black,pos=0.5,right,xshift=0.8cm,align=left]{Le corps du document :\\ ici, vous écrivez votre texte\\ et faites appel aux différents\\ packages qui dirigeront\\ la mise en page};
+		\path (0,1.8) node[black,right]{\ttfamily $\backslash$documentclass[]\{\}};
+		\path (0,-0.2) node[black,right]{\ttfamily $\backslash$begin\{document\}};
+		\path (0,-3.8) node[black,right]{\ttfamily $\backslash$end\{document\}};		
+	\end{tikzpicture}
+\end{frame}
+
+\subsection[Préamb]{Le préambule}
+\begin{frame}[fragile]
+	\frametitle{Les classes}
+	Les classes de documents sont des normes de mise en page de natures différentes. Les normes de mise en page ne sont pas les mêmes qu'on écrive un article, un livre ou une lettre ! MikTeX propose plusieurs classes basiques qui font très bien le boulot. On retiendra article, report, book et thesis.\\
+	
+	Une classe doit \alert{TOUJOURS} être déclarée en première dans votre code par la commande :
+\begin{footnotesize}
+	\begin{Verbatim}
+\documentclass[<options de la classe>]{<nom de la classe>}
+	\end{Verbatim}
+\end{footnotesize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Les packages}
+	Un package est en fait du code TeX qui dirige la mise en page et la définition de certaines fonctions. Des exemples de packages usuels :
+	\begin{description}
+		\item{\textbf{graphicx}} permet d'inclure des images dans votre document,
+		\item{\textbf{tabularx}} permet de faire des tableaux,
+		\item{\textbf{babel}} permet de faire une typographie spécifique à une langue,
+		\item{\textbf{ulem}} permet de souligner du texte...
+	\end{description}
+	Beaucoup de packages sont déjà chargés lors de la déclaration de la classe de document que vous utilisez. Pour charger un package manuellement, on écrira :
+	\begin{small}
+	\begin{Verbatim}
+\usepackage[<options du package>]{<nom du package>}
+	\end{Verbatim}
+	\end{small}
+\end{frame}
+
+\subsection[Corps]{Le corps du texte}
+\begin{frame}[fragile]
+	\frametitle{Les environnements}
+	Un environnement est une partie de texte sur laquelle on applique une mise en page particulière (police en gras, en couleur, soulignée, itemisée...). Un environnement sera toujours encapsulé entre deux balises :
+	\begin{Verbatim}
+\begin{<environnement>}
+\end{<environnement>}
+	\end{Verbatim}
+	\vspace{0.2cm}
+	Certains environnements simples peuvent être abrégés par des fonctions entre crochets:
+	\begin{Verbatim}
+\textbf{<texte>}
+{\bfseries <texte>}
+	\end{Verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Chapitres, sections, sous-sections...}
+	Pour structurer un document sous formes de sections, des fonctions prédéfinies sont disponibles :
+	\begin{Verbatim}
+\chapter{<titre>} (sauf pour la classe article)
+\section{<titre>}
+\subsection{<titre>}
+\subsubsection...
+	\end{Verbatim}
+	\vspace{0.3cm}
+	Ils permettront de créer des chapitres et sections qui apparaîtront dans la table des matières. Si vous ne voulez pas faire apparaître une section dans la table des matières, il suffit de rajouter une $\ast$ : \vspace{-0.6cm}
+	\begin{Verbatim}
+\section*{<texte>}
+	\end{Verbatim}
+	Elle apparaîtra alors dans le corps de texte mais non numérotée.
+\end{frame}
+
+\subsection[Biblio]{Bibliographie}
+\begin{frame}[fragile]
+	\frametitle{Bibliographie et citations}
+	La gestion de la bibliographie et de la citation dans un script Tex se fait via un fichier \textit{\textbf{BibTeX}}. Ce format est normé et est se présente comme un listing des propriétés d'une entrée bibliographique... Bref, sous Mendeley, sélectionnez les articles que vous souhaitez citer puis sélectionnez "Exporter" puis choisissez le format BibTeX. Le fichier se retrouve au format \textit{.bib}
+	\newline
+	
+	\alert{Attention !} Ce fichier doit se trouver dans le même dossier que votre script TeX où vous souhaitez citer vos entrées.
+\end{frame}
+
+\begin{frame}[fragile]
+On dit ensuite au compilateur quel fichier de biblio est utilisé par la fonction \textit{bibliography}.
+
+\begin{Verbatim}
+\bibliography{<nom du fichier>}
+\end{Verbatim}
+\vspace{.2cm}
+Il faut ensuite choisir le style des citations et de la table des références en utilisant \textit{bibliographystyle}. Je vous laisse regarder les différents styles par défaut (plain, alpha, abbr...). Certains journaux ont créé leurs styles de référence...
+
+\begin{Verbatim}
+\bibliographystyle{<nom du style>}
+\end{Verbatim}
+\end{frame}
+
+\section{Les figures et les tables}
+\begin{frame}[fragile]
+
+\begin{definition}
+Un environnement de figure ou de table est un flottant, c'est-à-dire que TeX considère tout ce qui est dans cet environnement comme "bougeable" d'un bloc. Il choisira donc toujours, selon lui, le meilleur endroit pour ce flottant.
+\end{definition}
+\vspace{.4cm}
+Les environnements de figure et de table sont flottants mais permettent aussi d'autres choses: comptage des figures, gestion de la légende, des sous-figures, des références...
+
+\end{frame}
+
+\end{document}
