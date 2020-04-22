@@ -6,3 +6,15 @@
 *.aux
 
 installation_latex.pdf
+
+*.snm
+
+*.nav
+
+*.out
+
+*.toc
+
+*.vrb
+
+presentation.pdf

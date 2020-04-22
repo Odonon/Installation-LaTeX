@@ -15,6 +15,9 @@
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
 \usetikzlibrary{quotes,angles,patterns,plotmarks,decorations.pathreplacing}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
 
 \begin{document}
 
@@ -182,11 +185,61 @@ Il faut ensuite choisir le style des citations et de la table des références e
 \begin{frame}[fragile]
 
 \begin{definition}
-Un environnement de figure ou de table est un flottant, c'est-à-dire que TeX considère tout ce qui est dans cet environnement comme "bougeable" d'un bloc. Il choisira donc toujours, selon lui, le meilleur endroit pour ce flottant.
+Un environnement de figure ou de table est un \textcolor{red}{flottant}, c'est-à-dire que TeX considère tout ce qui est dans cet environnement comme "bougeable" d'un bloc. Il choisira donc toujours, selon lui, le meilleur endroit pour ce flottant.
 \end{definition}
 \vspace{.4cm}
-Les environnements de figure et de table sont flottants mais permettent aussi d'autres choses: comptage des figures, gestion de la légende, des sous-figures, des références...
+Les environnements de figure, de table et d'équations sont, par exemple, flottants mais permettent aussi d'autres choses: comptage des figures, gestion de la légende, des sous-figures, des références...
 
+\end{frame}
+
+\subsection{Figure}
+\begin{frame}[fragile]
+	\frametitle{Exemple d'insertion d'une image dans un environnement figure}
+	\begin{Verbatim}
+	\begin{figure}
+		\includegraphics{imagefile}
+		\caption{La légende de l'image}
+		\label{fig:label pour y faire référence}
+	\end{figure}
+	\end{Verbatim}
+	\vspace{.2cm}
+	A noter que la fonction \textit{includegraphics} est disponible par le package \textit{graphicx}.
+\end{frame}
+
+\subsection{Table et tabular}
+\begin{frame}[fragile]
+	\frametitle{Comment construire le tableau ?}
+	\textit{tabular} est très simpliste, il gère tout seul la largeur des colonnes, il suffit de lui dire l'alignement des colonnes que l'on souhaite. Ces alignements s'écrivent par des abréviations:
+	\begin{itemize}
+		\item \textit{c} pour centré
+		\item \textit{l} pour aligné à gauche
+		\item \textit{r} pour aligné à droite
+	\end{itemize}
+	On indiquera ces abréviations autant de fois que l'on veut de colonnes.
+	
+	Il faut aussi lui indiquer si l'on veut des lignes séparatrices entre les colonnes. Pour cela, on lui ajoutera le symbole $\mid$ entre les précédentes abréviations.
+\end{frame}
+
+\begin{frame}[fragile]
+	Donc si je veux un tableau de 5 colonnes dont la première est centrée et les autres alignées à gauche avec des séparations entre chaque colonne, j'écrirai:
+\begin{Verbatim}
+\begin{tabular}{|c|l|l|l|l|}
+	contenu...
+\end{tabular}
+\end{Verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+	Un tableau se construit grâce à la commande \textit{tabular}. Pour qu'il soit dans un environnement \textcolor{red}{flottant}, il faut l'encapsuler dans un environnement \textit{table}.
+\begin{Verbatim}
+\begin{table}
+	\begin{tabular}{options}
+		contenu...
+	\end{tabular}
+\end{table}
+\caption{La légende du tableau}
+\label{tab:label pour y faire référence}
+\end{Verbatim}
 \end{frame}
 
 \end{document}
