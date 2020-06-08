@@ -22,3 +22,7 @@ presentation.pdf
 ailette_fusee_holman.pdf
 
 exemple_formation.pdf
+
+*.bbl
+
+*.blg
