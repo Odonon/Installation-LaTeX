@@ -8,9 +8,20 @@
 \usepackage{graphicx} % insertion d'images
 \usepackage{pgfplots} % pour faire des beaux graphiques
 \usepackage{standalone}
+\usepackage{url}
 
 \begin{document}
-	La taille des polices se fait par les commandes suivantes:
+
+\tableofcontents
+	
+\section{Polices et caractères}
+	Le choix de la police se fait dans le préambule du document. Si aucune police n'est appelée, alors la police par défaut est une police avec sérif type \textit{Times New Roman} (comme c'est le cas ici). La taille des polices se fait d'abord par le préambule lorsque l'on donne le type de document. 
+	
+	\begin{verbatim}
+	\documentclass[11pt]{article} % Ici la taille par défaut sera de 11pt
+	\end{verbatim}
+	
+	La taille de la police peut être changée ponctuellement par les commandes suivantes:
 	\begin{itemize}
 		\item \begin{verbatim}
 		\tiny
@@ -74,6 +85,7 @@
 		\newline
 	\end{itemize}
 
+\section{Figure et insertion d'images}
 Je veux insérer une image et la centrer dans une figure \ref{fig:big_photo}.
 
 \begin{verbatim}
@@ -84,7 +96,7 @@ Je veux insérer une image et la centrer dans une figure \ref{fig:big_photo}.
 	\label{fig:big_photo}
 \end{figure}
 \end{verbatim}
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\includegraphics{photo.jpg}
 	\caption{une belle photo trop grande}
@@ -100,10 +112,115 @@ Pour la redimensionner, on peut utiliser les options de \textit{includegraphics}
 	\label{fig:not_big_photo}
 \end{figure}
 \end{verbatim}
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=\linewidth]{photo.jpg}
 	\caption{une belle photo moins grande}
 	\label{fig:not_big_photo}
 \end{figure}
+
+Vous remarquerez que le positionnement des images n'est pour l'instant pas forcé et que \LaTeX fait un peu ce qu'il veut. Pour forcer un positionnement on peut ajouter les options [tbh!]. Gardez en tête que \LaTeX voudra toujours garder le texte en un seul morceau et utilisera toujours les flottants pour se faire. Le positionnement des figures se fait donc en général à la fin de la rédaction d'un texte car parfois la position de la figure changera... Mais cela reste quand même une habitude différente que celle des WYSIWYG.
+
+\section{Tableaux}
+Les tableaux peuvent être écrits dans des flottants \textit{table}. Un tableau peut se construire de nombreuses façons, je vous renvoie vers le livre en ligne \url{https://fr.wikibooks.org/wiki/LaTeX/Tableaux} (qui est d'ailleurs un bon pense-bête sur tous les sujets en \LaTeX !).
+
+Ici je vous propose une façon très simple de construire un tableau sans options particulières.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		cell1 & cell2 & cell3\\
+		cell4 & cell5 & cell6\\
+		cell7 & cell8 & cell9\\
+	\end{tabular}
+	\label{tab:simple_tab}
+	\caption{Tableau très simple}
+\end{table}
+
+\begin{verbatim}
+\begin{table}[h]
+	\centering
+		\begin{tabular}{|c|c|c|}
+			cell1 & cell2 & cell3\\
+			cell4 & cell5 & cell6\\
+			cell7 & cell8 & cell9\\
+		\end{tabular}
+	\label{tab:simple_tab}
+	\caption{Tableau très simple}
+\end{table}
+\end{verbatim}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{||c|c|c||}
+		\hline
+		cell1 & cell2 & cell3\\
+		\hline
+		cell4 & cell5 & cell6\\
+		\hline
+		cell7 & cell8 & cell9\\
+		\hline
+	\end{tabular}
+	\label{tab:simple_tab}
+	\caption{Tableau plus sympa}
+\end{table}
+
+\begin{verbatim}
+\begin{table}[h]
+\centering
+\begin{tabular}{||c|c|c||}
+\hline
+cell1 & cell2 & cell3\\
+\hline
+cell4 & cell5 & cell6\\
+\hline
+cell7 & cell8 & cell9\\
+\hline
+\end{tabular}
+\label{tab:simple_tab}
+\caption{Tableau plus sympa}
+\end{table}
+\end{verbatim}
+
+\section{Equations mathématiques}
+\LaTeX brille surtout par sa gestion des équations. Plusieurs manières pour démarrer un environnement d'équation:
+
+\begin{enumerate}
+	\item Une équation à la ligne $$f(x)=0$$
+		\begin{verbatim}
+		$$ f(x)=0$
+		\end{verbatim}
+	\item Une équation à la suite du texte $f(x)=\dfrac{1}{x}$
+		\begin{verbatim}
+		$f(x)=\dfrac{1}{x}$
+		\end{verbatim}
+	\item Une équation chiffrée
+		\begin{equation}
+		f(x)=\sin x \times \dfrac{1}{x}
+		\end{equation}
+		
+		\begin{verbatim}
+		\begin{equation}
+		f(x)=\sin x \times \dfrac{1}{x}
+		\end{equation}
+		\end{verbatim}
+\end{enumerate}
+
+On peut aussi créer des systèmes d'équations, chiffrées ou non, insérer des équations dans des tableaux...
+
+\section{Références et bibliographies}
+Vous avez déjà remarqué que pour faire référence à des tableaux ou figures, il faut les labelliser par la macro \textit{label} et ensuite y faire référence par la macro \textit{ref}.
+
+Pour ce qui est de faire référence à des éléments de bibliographie, \LaTeX intègre la méthode \textit{BibTeX}. C'est assez simple:
+\begin{itemize}
+	\item Les références bibliographiques sont écrites dans un fichier externe sous le format \textit{BibTeX} (format qui est pris en charge par Mendeley, vous pouvez même demander à Google Scholar de vous donner une citation au format \textit{BibTeX}) avec une clé de référence (clé en général au format auteurdatetitre, mais peut être changé comme on le souhaite).
+	\item Dans votre fichier \LaTeX vous pouvez ensuite appeler les entrées bibliographiques par la macro \textit{cite}.
+\end{itemize}
+
+Exemple avec le fichier \textit{bibliography} donné. Ici je cite Quiban \cite{quiban2020churning}, Boni \cite{boni2017experimental}, Bossy \cite{bossy2019competition}, Vouaillat \cite{vouaillat2019hertzian} et Ripard \cite{ripard2019experimental}.
+
+\bibliography{bibliography} %Ces deux lignes sont indispensables pour créer la bibliographie
+\bibliographystyle{abbrv} %Celle-ci sert à indiquer le style de référence que l'on souhaite, par exemple celle d'un journal particulier etc.
+
 \end{document}
+
