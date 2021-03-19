@@ -17,8 +17,6 @@ installation_latex.pdf
 
 *.vrb
 
-presentation.pdf
-
 ailette_fusee_holman.pdf
 
 exemple_formation.pdf
@@ -26,3 +24,7 @@ exemple_formation.pdf
 *.bbl
 
 *.blg
+
+*.fls
+
+*.fdb_latexmk
