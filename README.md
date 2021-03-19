@@ -27,6 +27,9 @@ __ATTENTION :__ Pour installer Texstudio, il est nécessaire d'ajouter l'option 
 apt --no-install-recommends install texstudio
 ```
 
+### Ajout de la variable dans le *path* (Linux uniquement)
+Pour pouvoir utiliser votre installation toute neuve de texlive il est nécessaire d'ajouter le dossier d'installation à votre variable d'environnement `$PATH`. Pour se faire, plusieurs méthodes, je vous renvoie à votre meilleure recherche Google pour trouver votre bonheur.
+
 ## Installation sous ArchLinux
 Pour une installation sur ArchLinux, je vous renvoie à l'AUR sur le wiki de Arch https://wiki.archlinux.org/index.php/TeX_Live | je conseille une installation manuelle, le dépôt sur pamac semble entrer en conflit avec certaines installations des éditeurs comme TeXStudio et Texmaker depuis le manager.
 
