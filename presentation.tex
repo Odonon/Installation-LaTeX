@@ -30,7 +30,7 @@
 	\begin{definition}
 	WYDIWYG (What You Do Is What You Get) comprend les logiciels de traitements de textes comme MS-Word, OpenOffice ou encore LibreOffice. C'est-à-dire que la mise en page doit être faite par l'utilisateur via une interface graphique.
 	\end{definition}
-	
+
 	\begin{center}
 	\alert{\LaTeX\ n'en est pas un !}
 	\end{center}
@@ -48,7 +48,7 @@
 		\begin{scope}[yshift=5cm]
 		\path (0,0) node[align=center,fill=gray!20!white,draw](x2){Ecriture\\ ET Mise en page };
 		\path (8,0) node[align=center,fill=gray!20!white,draw](z2){Production d'un PDF\\ ou PS};
-		\draw[->] (x2)--(z2);	
+		\draw[->] (x2)--(z2);
 		\end{scope}
 	%% Utilisateur
 		\begin{scope}[yshift=3cm]
@@ -90,7 +90,7 @@ Par ailleurs, il est intéressant, bien que pas obligatoire, d'utiliser un édit
 		\draw[decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt}] (5,-4)--(5,0) node[black,pos=0.5,right,xshift=0.8cm,align=left]{Le corps du document :\\ ici, vous écrivez votre texte\\ et faites appel aux différents\\ packages qui dirigeront\\ la mise en page};
 		\path (0,1.8) node[black,right]{\ttfamily $\backslash$documentclass[]\{\}};
 		\path (0,-0.2) node[black,right]{\ttfamily $\backslash$begin\{document\}};
-		\path (0,-3.8) node[black,right]{\ttfamily $\backslash$end\{document\}};		
+		\path (0,-3.8) node[black,right]{\ttfamily $\backslash$end\{document\}};
 	\end{tikzpicture}
 \end{frame}
 
@@ -98,7 +98,7 @@ Par ailleurs, il est intéressant, bien que pas obligatoire, d'utiliser un édit
 \begin{frame}[fragile]
 	\frametitle{Les classes}
 	Les classes de documents sont des normes de mise en page de natures différentes. Les normes de mise en page ne sont pas les mêmes qu'on écrive un article, un livre ou une lettre ! MikTeX propose plusieurs classes basiques qui font très bien le boulot. On retiendra article, report, book et thesis.\\
-	
+
 	Une classe doit \alert{TOUJOURS} être déclarée en première dans votre code par la commande :
 \begin{footnotesize}
 	\begin{Verbatim}
@@ -163,7 +163,7 @@ Par ailleurs, il est intéressant, bien que pas obligatoire, d'utiliser un édit
 	\frametitle{Bibliographie et citations}
 	La gestion de la bibliographie et de la citation dans un script Tex se fait via un fichier \textit{\textbf{BibTeX}}. Ce format est normé et est se présente comme un listing des propriétés d'une entrée bibliographique... Bref, sous Mendeley, sélectionnez les articles que vous souhaitez citer puis sélectionnez "Exporter" puis choisissez le format BibTeX. Le fichier se retrouve au format \textit{.bib}
 	\newline
-	
+
 	\alert{Attention !} Ce fichier doit se trouver dans le même dossier que votre script TeX où vous souhaitez citer vos entrées.
 \end{frame}
 
@@ -216,7 +216,7 @@ Les environnements de figure, de table et d'équations sont, par exemple, flotta
 		\item \textit{r} pour aligné à droite
 	\end{itemize}
 	On indiquera ces abréviations autant de fois que l'on veut de colonnes.
-	
+
 	Il faut aussi lui indiquer si l'on veut des lignes séparatrices entre les colonnes. Pour cela, on lui ajoutera le symbole $\mid$ entre les précédentes abréviations.
 \end{frame}
 
@@ -266,7 +266,7 @@ Les environnements de figure, de table et d'équations sont, par exemple, flotta
 
 \begin{frame}[fragile]
 	Le package \textit{standalone} permet de séparer votre code en plusieurs scripts et les compiler indépendemment. Je vous conseille de l'utiliser régulièrement pour éviter d'avoir les codes de vos graphes dans votre script principal. Je vous renvoie à l'exemple.
-	
+
 	\begin{definition}
 		\textcolor{red}{Tikz} (et par extension \textcolor{red}{PGFplot}) permet de dessiner dans LaTeX, tracer des formes etc. PGFplot est un enfant de ce plus gros package qui est spécifique au tracé de graphes (2D ou 3D).
 	\end{definition}
