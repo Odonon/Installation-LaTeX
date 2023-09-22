@@ -35,8 +35,8 @@ Pour une installation sur ArchLinux, je vous renvoie à l'AUR sur le wiki de Arc
 
 # Tutoriels
 Pour démarrer, quelques sites avec d'excellents tutoriels ou base de données d'exemples :
-- [LearLaTeX][https://www.learnlatex.org/fr/] : un tutoriel complet avec des exercices pour débutants
-- [TeXample][https://texample.net/] : une base de données d'exemples de figures dessinées avec TikZ ou pgfplots
-- [LaTeX Cookbook][https://latex-cookbook.net/] : un livre de recettes pour faire beaucoup de belles choses avec LaTeX
-- [Forum TeXchange][https://tex.stackexchange.com/] : le graal lorsque l'on a une question ou une erreur inexpliquée
+- [LearnLaTeX](https://www.learnlatex.org/fr/) : un tutoriel complet avec des exercices pour débutants
+- [TeXample](https://texample.net/) : une base de données d'exemples de figures dessinées avec TikZ ou pgfplots
+- [LaTeX Cookbook](https://latex-cookbook.net/) : un livre de recettes pour faire beaucoup de belles choses avec LaTeX
+- [Forum TeXchange](https://tex.stackexchange.com/) : le graal lorsque l'on a une question ou une erreur inexpliquée
 
